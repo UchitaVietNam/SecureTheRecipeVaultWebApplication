@@ -1,0 +1,9 @@
+Based on the architectural diagram and the steps you have taken so far to upload data and access the web application service, identify at least 4 security practices that are less clear. Include a rationale.
+
+1. IAM role has administrative access to the S3 group. This should be avoided to enhance security. 
+
+2. WebAppSG is open to allow access from multiple ports from the internet to the WebSevice version within the public subnet. Instead, the web service should be in a private subnet. This service should be within a private subnet and use port 443 instead of 80 to ensure SSL termination from AppLoadBalancerSG to the instance.
+
+3. Default private routes have a destination CIDR to the internet, allowing malicious resources in the private subnet to communicate with any endpoint on the internet.
+
+4. All S3 buckets are not encrypted, and the block public access is also disabled, so anyone can access and view all objects within those buckets.

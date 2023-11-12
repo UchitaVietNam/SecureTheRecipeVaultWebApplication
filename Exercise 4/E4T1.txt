@@ -1,0 +1,12 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+1. Restrict SSH access from the public internet to EC2 instances.
+2. Prevent root account login via SSH.
+3. Configure the use of complex passwords - over 8 characters and include specific characters, avoiding password reuse.
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+- Utilize the principle of least privilege for the current role's permissions, allowing access only to specific groups rather than using wildcard characters (*). Policy conditions can also be enforced.
+- For enhanced protection of S3 bucket contents:
+  - Enable server-side encryption feature on the S3 bucket.
+  - Restrict the role profile's permissions to read-only from S3 until the application requires write access.

@@ -1,0 +1,19 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+- Ensure the default security group for every VPC restricts all access traffic.
+- Default VPC security groups should not allow traffic in and out of WebAppSG.
+- Ensure no security group allows intrusion from 0.0.0.0/0 to port 22.
+- Ensure no security group allows intrusion from 0.0.0.0/0 to port 3389.
+- IAM password policy - minimum length - Root account is not complaint.
+- Serverside encryption and Logging is not enabled for S3 buckets.
+- Loadbalancer is not configured to redirect Non-SSL(HTTP) requests to SSL(HTTPS).
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+- The VPC comes with a default security group that is initially configured to deny all inbound traffic, allow all outbound traffic, and allow all traffic between instances assigned to the security group. If you don't specify a security group when launching an instance, that instance will automatically be assigned to this default security group. The default security group should restrict all inbound traffic.
+- Security groups provide the ability to filter the stateful network traffic in and out to AWS resources. It is advised that no security group allows unrestricted intrusion on port 3389.
+- Security groups provide the ability to filter the stateful network traffic in and out to AWS resources. It is advised that no security group allows unrestricted intrusion on port 22.
+- AWS Control Tower checks whether Amazon EC2 instances in your account are managed by AWS Systems Manager. Use AWS Systems Manager to manage or access your EC2 instances.
+- Have a stricter IAM password policy.
+- Enable logging for S3 buckets.
+- Traffic should only be allowed from security groups.
